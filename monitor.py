@@ -210,6 +210,11 @@ def main():
         send_whatsapp(f"✅ Monitor de medios activado para: {', '.join(KEYWORDS)}.\n"
                       f"Registré {len(found)} publicación(es) de los últimos {MAX_AGE_HOURS // 24} días; "
                       f"desde ahora te aviso solo lo nuevo.")
+        if new:
+            time.sleep(5)
+            for msg in format_messages(new):
+                send_whatsapp(msg)
+                time.sleep(5)
     elif new:
         for msg in format_messages(new):
             send_whatsapp(msg)
